@@ -63,10 +63,12 @@ $~$
             $~$
             - (\f $\rightarrow$ f(\x $\rightarrow$ x)) \y $\rightarrow$ y
                 
-                (\f $\rightarrow$ f(\x $\rightarrow$ x)) *: Function we are calling*
+                (\f $\rightarrow$ f(\x $\rightarrow$ x)) *: The function we are calling*
                 \y $\rightarrow$ y *: Argument*
-                
-                - This plugs in the argument in place of occurrences of the formal paramter in the function body
+
+                $~$
+
+                This plugs in the argument in place of occurrences of the formal paramter in the function body
                 - We get:
                 (\y $\rightarrow$ y) (\x $\rightarrow$ x)
                 - Steps to: \x $\rightarrow$ x
@@ -74,12 +76,15 @@ $~$
             - The **Subsitution Rule** ($\beta$ rule)
                 - (\x $\rightarrow$ $e_1$) $e_2 \rightarrow \beta e_1[x := e_2]$
                     - $\beta e_1[x := e_2]$ : $e_1$ but w/ occurrences of x replaced by $e_2$
+                $~$
                 - \x $\rightarrow$ (\y $\rightarrow$ x)
                     - Takes in arguments x and y, then returns x
                     - (\x $\rightarrow$ (\y $\rightarrow$ x)) 5
                         - $\rightarrow$ $\beta$ \y $\rightarrow$ 5
    
 #### Lecture 3 - April 4, 2025
+
+- 
 
 
 
