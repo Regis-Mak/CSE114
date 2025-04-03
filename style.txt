@@ -1,0 +1,30 @@
+.markdown-preview.markdown-preview {
+  background-color: #1e1e1e; // VS Code dark mode background
+  color: #d4d4d4; // Light gray text for readability
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; // White headings
+  }
+
+  a {
+    color: #569cd6; // Link color similar to VS Code
+  }
+
+  code, pre {
+    background-color: #252526; // Darker background for code blocks
+    color: #dcdcaa; // Light yellowish color for code
+    border-radius: 4px;
+    padding: 4px;
+  }
+  
+  blockquote {
+    border-left: 4px solid #007acc; // Blue accent for blockquotes
+    background-color: #252526;
+    padding: 10px;
+  }
+}
+
+.md-sidebar-toc.md-sidebar-toc {
+  background-color: #252526; // Darker sidebar
+  color: #d4d4d4;
+}
