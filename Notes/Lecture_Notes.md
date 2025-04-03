@@ -33,7 +33,7 @@ $~$
             - Python Syntax:
                 ```python
                 lambda x : x
-                or
+                     or
                 def identity(x):
                     return x
                 ```
