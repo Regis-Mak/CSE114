@@ -54,7 +54,7 @@ $~$
             ~~~
         $~$
 
-        - In **Lambda Calculus**, we don't put ( ) around the argument in a function call
+        - In **Lambda Calculus**, we don't put "( )" around the argument in a function call
             - \x $\rightarrow$ x "rainbow"
             *This would be a function whose body is* [ x "rainbow" ]
         $~$
@@ -84,8 +84,36 @@ $~$
    
 #### Lecture 3 - April 4, 2025
 
-- 
+- From last time: The $\beta$-rule
+    - (\x $\rightarrow$ $e_1$) $e_2$ $\rightarrow$ $_\beta$ $e_1$[x := $e_2$]
+        - $e_1$ but with occurrences of x replaced by $e_2$
+        - (\x $\rightarrow$ $e_1$) $e_2$ : *reducible expression or "redux"*
+$~$
+- ( (\x $\rightarrow$ (\y $\rightarrow$ x) ) 5) 6
+As shorthand for : \x $\rightarrow$ (\y $\rightarrow$ x)
+we can instead write : \x y $\rightarrow$ x
+$~$
+As short hand for:
+( (\x $\rightarrow$ (\y $\rightarrow$ x) ) 5) 6
+We can just write
+( (\x y $\rightarrow$ x) 5) 6
+Which can be further shortened to:
+(\x y $\rightarrow$ x) 5 6 (Remove extra "( )")
 
+- A more general way of saying this is:
+    - Function application is **Left-Associative**, i.e,
+    f  g  x means:
+    - Apply f to g, then apply the result of *that* to x.
+    - In other words
+        - f g x is shorthand for
+        (f g) x
+    $~$
+    - If we want to apply  to x and then apply f to the result, we would write
+        - f (g x)
+    $~$
+- Learning Elsa ( lecture02.lc )
+
+#### Lecture 4
 
 
 
