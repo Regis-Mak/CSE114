@@ -82,7 +82,7 @@ $~$
                 - (\x $\rightarrow$ (\y $\rightarrow$ x)) 5
                     - $\rightarrow$ $\beta$ \y $\rightarrow$ 5
    
-#### Lecture 3 - April 4, 2025
+##### Lecture 3 - April 4, 2025
 
 - From last time: The $\beta$-rule
     - (\x $\rightarrow$ $e_1$) $e_2$ $\rightarrow$ $_\beta$ $e_1$[x := $e_2$]
@@ -111,9 +111,61 @@ Which can be further shortened to:
     - If we want to apply  to x and then apply f to the result, we would write
         - f (g x)
     $~$
-- Learning Elsa ( lecture02.lc )
+- Learning Elsa ( lecture03.lc )
 
-#### Lecture 4
+##### Lecture 4 - April 7, 2025
+- Grammer of Lambda Calculus
+    - e ::= x
+        - x : variables
+
+    - \x $\rightarrow$ e
+        - Function definitions, aka Lambda abstractions
+    
+    - $e_1$ $e_2$
+        - Function calls, aka function applications
+$~$
+- Notational Conventions
+    - The body of a lambda abstractions extends as far right as possible
+    \x $\rightarrow$ m n
+        - means \x $\rightarrow$ (m n)
+        - NOT (\x $\rightarrow$ m) n
+    $~$
+    - Function application is left-associative:
+    $a~b~c$
+        - means $(a~b)~c$
+        - NOT $a~(b~c)$
+    $~$
+    - Instead of
+    \x $\rightarrow$ (\y $\rightarrow$ (\z $\rightarrow$ e))
+    We can just write:
+    \x $\rightarrow$ \y $\rightarrow$ \z $\rightarrow$ e
+    and we can simplify that to
+    \x y z $\rightarrow$ e
+    $~$
+    Putting this all together:
+    instead of
+    (((\x $\rightarrow$ (\y $\rightarrow$ (\z $\rightarrow$ z))) q) r) s
+    We can just write
+    (\x y z $\rightarrow$ z) q r s
+    $~$
+    - A **redux** (reducible expression) is anything you can apply the $\beta$-rule to.
+    - A lambda calculus expression in **normal form** is one that has no redexes
+    $~$
+    Example:
+        - (\x y $\rightarrow$ (\z $\rightarrow$ z) x) rainbow sprinkles
+        =b> (\x y $\rightarrow$ x) rainbow sprinkles
+        =b> (\y $\rightarrow$ rainbow) sprinkles
+        =b> rainbow
+        *Expression is now in normal form*
+        - Or:
+        =b> (\y $\rightarrow$ (\z $\rightarrow$ z) rainbow) sprinkles
+        =b> (\z $\rightarrow$ z)rainbow
+        =b> rainbow
+    - ***Church-Rosser Theorem!***
+$~$
+- More Learning Elsa (lecture04.lc)    
+$~$
+##### Lecture 5    
 
 
 

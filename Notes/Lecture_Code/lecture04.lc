@@ -1,0 +1,71 @@
+-- Welcome to lecture 4!
+
+let TRUE = \x y -> x
+let FALSE = \x y -> y
+--ITE stands for "if...then...else"
+let ITE = \b x y -> b x y
+let NOT = \b x y -> b y x
+
+-- Church Numerals
+-- To encode the number N , 
+-- we use a function that takes arguments
+-- f and x , and applies
+-- f to x N times!
+
+let ZERO = \f x -> x
+let ONE = \f x -> f x
+let TWO = \f x -> f (f x)
+let THREE = \f x -> f(f (f x))
+
+-- if you have \f x -> x
+-- and you want \f x -> f x
+-- what do you do?
+let INCR = \n -> (\f x -> f (n f x))
+
+eval incr_example :
+    INCR ZERO
+    =d> (\n -> (\f x -> f (n f x))) ZERO
+    =b> \f x -> f (ZERO f x)
+    =d> \f x -> f((\f x -> x) f x)
+    =b> \f x -> f ((\x -> x) x)
+    =b>  \f x -> f x
+    =d> ONE
+
+
+eval if_true:
+    ITE TRUE rainbow sprinkles
+    =d> (\b x y -> b x y) TRUE rainbow sprinkles
+    =b>  (\x y -> TRUE x y) rainbow sprinkles
+    =b> (\y -> TRUE rainbow y) sprinkles
+    =b> TRUE rainbow sprinkles
+    =d> (\x y -> x)  rainbow sprinkles
+    =b> (\y -> rainbow) sprinkles
+    =b> rainbow
+
+eval if_false:
+    ITE FALSE rainbow sprinkles
+    =d> ITE (\x y -> y) rainbow sprinkles
+    =d> (\b x y -> b x y) (\x y -> y) rainbow sprinkles
+    =b> (\x y -> (\x y -> y) x y) rainbow sprinkles
+    =b> (\x y -> (\y -> y) y) rainbow sprinkles
+    =b> (\x y -> y) rainbow sprinkles
+    =b> (\y -> y) sprinkles
+    =b> sprinkles
+
+eval not_true:
+    NOT TRUE
+    =d> (\b x y -> b y x) TRUE
+    =b> \x y -> TRUE y x
+    =d> \x y -> (\x y -> x) y x
+    =a> \x y -> (\p y -> p) y x
+    =a> \x y -> (\p q -> p) y x
+    =b> \x y -> (\q -> y) x
+    =b> \x y -> y
+    =d> FALSE
+
+
+
+-- Keep in mind:
+--- \b x y -> b x y
+-- is just shorthand for
+-- \b (\x y -> b x y)
