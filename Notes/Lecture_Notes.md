@@ -165,7 +165,72 @@ $~$
 $~$
 - More Learning Elsa (lecture04.lc)    
 $~$
-##### Lecture 5    
+##### Lecture 5 - April 9, 2025
+- Adding Code (lecture05.lc)
+- In Elsa:
+    - =~>
+    Will try to reduce all the way to normal form
+    - =*>
+    Checks if there is a way to get to a certain point or something 
+$~$
+- Variable Scope
+    - A **binding** is an association of a name to some entity
+        - (name, entity)
+    - The **scope** of a binding in a program is the part of the program where the name can be used to refer to the entity
+    $~$
+    - \x $\rightarrow$ e
+        - "e" : is the scope of the binding from the formal parameter x, to whatever argument is passed to this function when called
+
+        - In \x $\rightarrow$ e, we say that any occurrence of x in e is bound by \x
+    $~$
+    - /x $\rightarrow$ **x**
+    - /x $\rightarrow$ (\y $\rightarrow$ **x**)
+        - bound occurrences of **x**
+    $~$
+    - An occurrence of a variable is **free** if it's not bound
+        - x y $\leftarrow$ x and y occur free
+        - \y $\rightarrow$ x y $\leftarrow$ x occurs free, but y occurs bound
+        $~$
+        - (\x y $\rightarrow$ y) x $\leftarrow$ x occurs free, but y occurs bound
+        - (\x y $\rightarrow$ x y) x $\leftarrow$ x occurs both free and bound, y occurs bound
+    $~$
+- e := x | x $\rightarrow$ e | $e_1$ $e_2$
+
+What variables occur free in a lambda calc expression?
+$~$
+Let $FV(e)$ the set of variables that occur free in $e$.
+
+- FV( x ) \ { x }
+- FV (\x $\rightarrow$ e) = FV( e ) ***-*** { x }
+    - " ***-*** " : set difference
+- FV( $e_1$ $e_2$) = FV( $e_1$ ) U FV( $e_2$ )
+$~$
+
+- An expression that has no free variables is ***closed***
+- A closed expression is also known as a ***combinator***
+    - e.g. \x $\rightarrow$ x is a cobinator
+$~$
+- Revisiting the $\beta$-rule
+    - (\x $\rightarrow$ $e_1$) $e_2$ $\rightarrow$$_\beta$ $e_1$[x := $e_2$]
+        - $e_1$, but with ***free*** occurrences of x replaced with $e_2$
+    $~$
+
+    Examples:
+    - (\x $\rightarrow$ (\x $\rightarrow$ x)) y
+        - (\x $\rightarrow$ x) renamed to \z $\rightarrow$ z
+
+    But what about this?
+    - (\x $\rightarrow$ (\y $\rightarrow$) x ) y
+     ~~=b> \y $\rightarrow$ y~~ ; wrong because y occurred free in the ***arugment***
+    It got ***captured*** by the \y binder in the body of the function
+    $~$
+    - So what we *really* want:
+    $e_1 [x := e_2]$ (the substitution operation)
+    to mean is:
+        - $e_1$ but with all free occurrences of x replaced by $e_2$ **as long as** no variables that occur free in $e_2$ get captured by binders in $e_1$
+        - and if any variables would get captured, the substitution operation is **undefined**!
+        $\rightarrow$ means that if we want to do substitution but it would cause variable capture, we need to **rename** (with " =a> " in Elsa) formal parameters first
+
 
 
 
