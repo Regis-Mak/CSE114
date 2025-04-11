@@ -1,0 +1,63 @@
+-- Welcome to lecture 6!
+
+let TRUE = \x y -> x
+let FALSE = \x y -> y
+--ITE stands for "if...then...else"
+let ITE = \b x y -> b x y
+
+-- Given x and y, create a pair (x, y)
+let PAIR = \x y -> (\b -> ITE b x y)
+
+-- Given a pair (x , y), get back x
+let FST = \p -> p TRUE
+
+-- Given a pair (x , y), get back y
+let SND = \p -> p FALSE
+
+-- What does this do?
+-- It takes a pair and returns the second element of the pair
+-- if the first element evaluates to TRUE
+-- ,otherwise it returns FALSE
+let PROGRAM = \p -> ITE (FST p) (SND p) FALSE
+
+eval alpha_example :
+    (\x -> (\y -> x)) y
+    =a> (\x -> (\z -> x)) y
+    =b> \z -> y
+
+-- Could've picked something else too:
+
+eval alpha_example_2 :
+    (\x -> (\y -> x)) y
+    =a> (\x -> (\q -> x)) y
+    =b> \q -> y
+
+eval alpha_equivalent :
+    \z -> y
+    =a> \q -> y
+
+eval pair_of_cats_fst :
+    FST (PAIR rainbow sprinkles)
+    =d> (\p -> p TRUE) (PAIR rainbow sprinkles)
+    =b> (PAIR rainbow sprinkles) TRUE
+    =d> ((\x y -> (\b -> ITE b x y)) rainbow sprinkles) TRUE
+    =b> ((\y -> (\b -> ITE b rainbow y)) sprinkles) TRUE
+    =b> (\b -> ITE b rainbow sprinkles) TRUE
+    =b> ITE TRUE rainbow sprinkles
+    =~> rainbow
+
+eval pair_of_cats_snd :
+    FST (PAIR rainbow sprinkles)
+    =d> (\p -> p FALSE) (PAIR rainbow sprinkles)
+    =b> (PAIR rainbow sprinkles) FALSE
+    =d> ((\x y -> (\b -> ITE b x y)) rainbow sprinkles) FALSE
+    =b> ((\y -> (\b -> ITE b rainbow y)) sprinkles) FALSE
+    =b> (\b -> ITE b rainbow sprinkles) FALSE
+    =b> ITE FALSE rainbow sprinkles
+    =~> sprinkles
+
+eval quiz_question :
+    SND (FST (PAIR (PAIR TRUE FALSE) TRUE))
+    =~> FALSE
+
+

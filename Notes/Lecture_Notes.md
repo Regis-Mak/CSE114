@@ -231,6 +231,57 @@ $~$
         - and if any variables would get captured, the substitution operation is **undefined**!
         $\rightarrow$ means that if we want to do substitution but it would cause variable capture, we need to **rename** (with " =a> " in Elsa) formal parameters first
 
+##### Lecture 6 - April 11, 2025
+- Capture-Avoiding Substitution
+    - (\x $\rightarrow$ $e_1$) $\rightarrow$ $_\beta$ $e_1$[x := $e_2$] 
+        - $e_1$[x := $e_2$] : How to define this so it avoids variable capture?
+        - Recall the grammer of lambda calc:
+        e:=x | \x $\rightarrow$ e | $e_1 e_2$
+    - What might $e_1$ be in $e_1$[x := $e_2$]?
+        - If $e_1$ is a variable and it's the same as the formal parameter in the binder (that is, $e_1$ == x)
+        x[x := $e_2$] = $e_2$
+        - If $e_1$ is a variable and it's NOT the same as the formal parameter in the binder (that is $e_1$ == y where y != x)
+        y[x := $e_2$] = y
+        $~$
+        - If $e_1$ is an application $e' e''$
+        ($e'$ $e''$)[x := $e_2$] =
+        $e'$ [x := $e_2$]  $e''$ [x := $e_2$]
+        $~$
+        - If $e_1$ is a function with x as its formal parameter
+        $e_1$ == \x $\rightarrow$ $e'$
+        (\x $\rightarrow$ $e'$)[x := $e_2$] = (\x $\rightarrow$ $e'$)
+        - If $e_1$ is a function with something else other than x as its formal parameter
+        ($e_1$ == \y $\rightarrow$ $e'$ where y != x)
+        (\y $\rightarrow$ $e'$) [x := $e_2$]
+            - If y is not the FV($e_2$):
+                (\y $\rightarrow$ $e'$) [x := $e_2$] = 
+                \y $\rightarrow$ $e'$ [x := $e_2$]
+            - If y **IS** in FV($e_2$):
+                - Substitution is undefined and we have to do a renaming step before we can do substitution
+
+        $~$
+        (\x $\rightarrow$ (\y $\rightarrow$ x)) y
+        $\rightarrow$$_\beta$ \y $\rightarrow$ y $~~~~~~~$ *could be wrong*
+        $~$
+        (\x $\rightarrow$ (\y $\rightarrow$ x))
+        =a> (\x $\rightarrow$ (\z $\rightarrow$ x))
+        - Known as an $\alpha$-step, or $\alpha$-renmaing
+        $~$
+        \x $\rightarrow$ x $~~~~$ \y $\rightarrow$ y
+        - These are $\alpha$-equivalent!
+
+        Example in (lecture06.lc)
+
+###### New Topic :P
+Returning to our exervise of encoding useful things in lambda calculus
+- **Pairs** ! (aka two-element tuple)
+    - What would we want to do with a pair?
+        - Access the first element
+        - Access the second element
+        - Take two things and construct a pair
+    - Example in (lecture06.lc)
+
+    
 
 
 
