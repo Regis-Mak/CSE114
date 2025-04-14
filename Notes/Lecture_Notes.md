@@ -281,6 +281,9 @@ Returning to our exervise of encoding useful things in lambda calculus
         - Take two things and construct a pair
     - Example in (lecture06.lc)
 
+##### Lecture 7 - April 14, 2025
+
+- (lecture07.lc)
     
 
 

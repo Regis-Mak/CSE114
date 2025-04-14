@@ -1,0 +1,72 @@
+-- Welcome to lecture 7!
+{-
+Whoa multi-line comments o m g
+-}
+
+let OMEGA = (\x -> x x) (\x -> x x)
+
+let Y = \f -> (\x -> f (x x)) (\x -> f (x x))
+
+{-
+Computing *triangular* numbers
+
+The triangular number T(n) is the sum of all natural numbers up to n.
+
+T(0) = 0
+T(1) = 1 + 0 = 1
+T(2) = 2 + 1 + 0 = 3
+T(3) = 3 + 2 + 1 + 0 = 6
+
+T(0) = 0 - base case
+T(n) = n + T(n - 1) -- inductive case
+-}
+
+-- We *wish* we could write this.. but we can't quite do this.
+let TRI = \n -> ITE (ISZ n)
+                    ZERO
+                    (ADD n (TRI (DECR n)))
+--We can do this instead:
+let TRI1 = \rec -> \n -> ITE (ISZ n) ZERO (ADD n (rec (DECR n)))
+let TRI = Y TRI1
+
+{-
+In general, the recipe for writing a recursive function is:
+
+- Write the function you *wish* you could write, with a recursive call
+- Take an extra argument as the first argument,
+- and replace the name of the recursively defined function with that argument
+    (e.g., replace a call to TRI with a call to rec in our example)
+- Pass that function with an extra argument ot 'Y'
+-}
+
+eval omega:
+    (\x -> x x) (\x -> x x)
+    =b> (\x -> x x) (\x -> x x)
+
+eval y :
+    \f -> (\x -> f (x x)) (\x -> f(x x))
+    =b> \f -> f((\x -> f(x x)) (\x -> f(x x)))
+    =b> \f -> f(f((\x -> f(x x)) (\x -> f(x x))))
+    =b> \f -> f(f(f((\x -> f(x x)) (\x -> f(x x)))))
+
+eval tri_zero :
+    TRI ZERO =~> ZERO
+
+eval tri_one :
+    TRI ONE
+    =d> (Y TRI1) ONE
+    =d> ((\f -> (\x -> f (x x)) (\x -> f (x x))) TRI1) ONE
+    =b> (\x -> TRI1 (x x)) (\x -> TRI1 (x x)) ONE
+    =b> TRI1 ((\x -> TRI1 (x x)) (\x -> TRI1 (x x))) ONE
+    =d> (\rec -> \n -> ITE (ISZ n) ZERO (ADD n (rec (DECR n)))) ((\x -> TRI1 (x x)) (\x -> TRI1 (x x))) ONE
+    =b> (\n -> ITE (ISZ n) ZERO (ADD n ((\x -> TRI1 (x x)) (DECR n)))) ONE
+    =b> ITE (ISZ ONE) ZERO (ADD ONE ((\x -> TRI1 (x x)) (DECR ONE)))
+    --The above will eventually crunch down to 'ADD ONE ZERO' which is:
+    =~> ONE
+
+eval tri_two :
+    TRI TWO =~> THREE
+
+eval tri_three :
+    TRI THREE =~> SIX
+
