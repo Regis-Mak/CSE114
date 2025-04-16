@@ -284,6 +284,62 @@ Returning to our exervise of encoding useful things in lambda calculus
 ##### Lecture 7 - April 14, 2025
 
 - (lecture07.lc)
+
+##### Lecture 8 - April 16, 2025
+```haskell
+--In ghci
+
+3 + 4
+7
+
+(+) 3 4
+7 
+
+div 10 5
+3
+
+10 'div' 5
+2
+
+10 'mod' 5
+0
+
+10 'mod' 6
+4
+
+mod 10 5
+0
+
+mod 10 5
+4
+
+[] -- Empty list constructor
+[]
+
+1:2:3:4:[]
+[1, 2, 3, 4]
+
+[1, 2, 3, 4]
+[1, 2, 3, 4]
+
+1:[2, 3, 4]
+[1, 2, 3, 4]
+
+"raibow":["sprinkles"]
+["rainbow", "sprinkles"]
+
+"rainbow":"sprinkles":[]
+["rainbow", "sprinkles"]
+
+"rainbow":("sprinkles":[])
+["rainbow", "sprinkles"]
+
+(:) "rainbow" ((:) "sprinkles" [])
+["rainbow", "sprinkles"]
+
+```
+- (lecture08.hs)
+
     
 
 
