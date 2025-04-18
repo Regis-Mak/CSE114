@@ -340,7 +340,8 @@ mod 10 5
 ```
 - (lecture08.hs)
 
-    
+##### Lecture 9 - April 18, 2025
+- (lecture09.hs)
 
 
 
