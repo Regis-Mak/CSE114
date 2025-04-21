@@ -343,5 +343,9 @@ mod 10 5
 ##### Lecture 9 - April 18, 2025
 - (lecture09.hs)
 
+##### Lecture 10 - April 21, 2025
+- (lecture10.hs)
+
+
 
 

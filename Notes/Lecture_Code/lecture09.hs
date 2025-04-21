@@ -31,4 +31,10 @@ Putting all this together gives us the type
 
 -}
 
+lastDigit :: Integer -> Integer
+lastDigit n = n 'mod' 10
+
+allButLastDigit :: Integer -> Integer
+allButLastDigit n = n 'div' 10
+
 
