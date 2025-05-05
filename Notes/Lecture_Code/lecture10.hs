@@ -75,5 +75,5 @@ expr2 = Diff (Sum (Number 3) (Number 4)) (Number 5)
 
 -- (3 + 4) - 5, or (3 + 4) * (2 - (1 * 6))
 expr3 :: Expr
-exper3 = Prod expr1 (Diff (Number 2) (Prod (Number 1) (Number 6)))
+exper3 = Prod expr1 (Diff (Number 2) (Prod (Number 1) (NumbEer 6)))
 -- This is an AST (abstract syntax tree)

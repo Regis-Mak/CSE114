@@ -352,6 +352,12 @@ mod 10 5
 ##### Lecture 12 - April 28, 2025
 - (lecture12.hs)
 
+##### Lecture 13
+
+##### Lecture 14 - May 5, 2025
+- (lecture14.hs)
+
+
 
 
 
