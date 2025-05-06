@@ -80,4 +80,39 @@ evensOnly (x:xs) | x `mod` 2 == 0 = x : evensOnly xs
 fourOnly :: [String] -> [String]
 fourOnly [] = []
 fourOnly (x:xs) | length x == 4 = x : fourOnly xs
-                |  otherwise = fourOnly xs
+                | otherwise = fourOnly xs
+
+{-
+
+The only differences here are 
+- the type of list elements
+- the guard expression
+
+-}
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' _ [] = []
+filter' f (x:xs) | f x = x : filter' f xs
+                | otherwise = filter' f xs
+
+evensOnly' :: [Int] -> [Int]
+evensOnly' = filter' (\x -> x 'mod' 2 == 0)
+
+-- Another famous higher-order function
+-- Take a list of `Int's` and square them
+
+square :: [Int] -> [Int]
+square [] = []
+square (x:xs) = x*x : square xs
+
+-- Take a list of `Int's` and produce a list of `Bool`s that say whether each `Int` is divisible by 3
+divisibileBy3 :: [Int] -> [Bool]
+divisibileBy3 [] = []
+divisibileBy3 (x:xs) = (x 'mod' 3 == 0) : divisibileBy3 xs
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (x:xs) = f x : map' f xs
+
+square' :: [Int] -> [Int]
+square' = map' (\x -> x * x)
