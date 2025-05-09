@@ -357,6 +357,11 @@ mod 10 5
 ##### Lecture 14 - May 5, 2025
 - (lecture14.hs)
 
+##### Lecture 15 - May 7, 2025
+- (lecture15.hs)
+
+##### Lecture 16 - May 9, 2025
+- (lecture16.hs)
 
 
 
