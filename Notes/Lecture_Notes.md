@@ -353,6 +353,7 @@ mod 10 5
 - (lecture12.hs)
 
 ##### Lecture 13
+- Did **NOT** go to that shii
 
 ##### Lecture 14 - May 5, 2025
 - (lecture14.hs)
@@ -362,6 +363,68 @@ mod 10 5
 
 ##### Lecture 16 - May 9, 2025
 - (lecture16.hs)
+
+##### Lecture 17 - May 12, 2025
+- (lecture17.hs)
+
+---
+
+##### Midterm #2 - Review Sesh
+
+- Overview :
+    - Lambda Calculus
+    - Haskell Data Types
+    - Parametric Polymorphism
+    - Recusion / Tail-Recusion & Pattern Matching
+    - Type Inference ("Intuitively")
+    - ASTs & Expressions
+    - Typeclasses
+    - CPS
+    $~$
+```hs
+-- Tail Recursion
+f :: blah blah
+f x = [no use of f]
+f y = f [no f]
+f z = if cond then f __ else f __
+
+-- Normal Recursion
+xxx f _ = g (f _ )
+```
+
+```hs
+-- Complex Pattern Matching
+-- For example; list of tuples
+f((a,b) : rest) = blah blah blah
+```
+
+```hs
+CPS
+-- Non-tail recursive version
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+-- Recursive Version
+factorial :: Int -> (Int -> Int) -> Int
+factorial 0 k = k 1
+factorial n k = factorial (n - 1) (\x -> k(g x))
+    where
+        g :: Int -> Int
+        g x = n * x
+```
+
+```
+data Foo a
+        = Leaf a
+        | Node (Foo a) a (Foo a)
+
+----------------------------------------
+
+Node(Leaf 4) 5 (Node (Leaf 6) 7 (Leaf 8))
+```
+
+
 
 
 
